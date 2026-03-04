@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AMG Swiss Cosmetics</title>
+<title>SwissCosmetic</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -61,6 +61,47 @@ h2{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:700;text-
 .add-btn{background:var(--dore);color:var(--noir);border:none;padding:.7rem 1.2rem;cursor:pointer;font-weight:600;text-transform:uppercase;font-size:.75rem;letter-spacing:.5px;transition:background .3s;}
 .add-btn:hover{background:var(--dore2);}
 .collagenes{background:linear-gradient(135deg,#fff,var(--gris));}
+.brands{background:#fff;padding:3rem 2rem;}
+.brands-grid{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:6rem;                 /* espace premium */
+  margin:3rem auto 4rem;
+  flex-wrap:wrap;
+}
+
+.brand-item{
+  width:260px;
+  height:160px;
+  background:linear-gradient(145deg,#ffffff,#f7f7f7);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+  border-radius:10px;
+  box-shadow:0 8px 25px rgba(0,0,0,.06);
+  transition:all .3s ease;
+}
+
+.brand-item img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  filter:grayscale(100%);
+  opacity:.85;
+  transition:all .3s ease;
+}
+
+.brand-item:hover{
+  transform:translateY(-6px);
+  box-shadow:0 15px 35px rgba(212,175,55,.15);
+}
+
+.brand-item:hover img{
+  filter:grayscale(0%);
+  opacity:1;
+}
 .col-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2.5rem;}
 .col-card{background:#fff;padding:2.5rem;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.08);transition:all .4s;}
 .col-card:hover{transform:translateY(-8px);box-shadow:0 15px 40px rgba(212,175,55,.2);}
@@ -199,13 +240,13 @@ footer{background:var(--noir);color:#fff;padding:3.5rem 2rem 1.5rem;}
 
 <nav id="nav">
   <div class="nav-inner">
-    <a href="#" class="logo">
-      <img src="images/logo_amg.jpeg" alt="AMG Swiss Cosmetics" onerror="this.style.display='none'">
+    <a href="#" class="logo" style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--dore);text-decoration:none;">
+      SwissCosmetic
     </a>
     <div class="hbg" id="hbg"><span></span><span></span><span></span></div>
     <ul class="nav-links" id="navLinks">
       <li><a href="#accueil">Accueil</a></li>
-      <li><a href="#apropos">A Propos</a></li>
+      <li><a href="#apropos">À Propos</a></li>
       <li><a href="#produits">Produits</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -219,9 +260,9 @@ footer{background:var(--noir);color:#fff;padding:3.5rem 2rem 1.5rem;}
 <section id="accueil" class="hero">
   <div>
     <h1>Suisse Par Nature</h1>
-    <p>Cosmetiques hautes performances crees en Suisse avec des principes actifs naturels</p>
+    <p>Cosmétiques hautes performances créés en Suisse avec des principes actifs naturels</p>
     <div class="hero-btns">
-      <a href="#produits" class="btn btn-gold">Decouvrir</a>
+      <a href="#produits" class="btn btn-gold">Découvrir</a>
       <a href="#apropos" class="btn btn-outline">En Savoir Plus</a>
     </div>
   </div>
@@ -229,13 +270,28 @@ footer{background:var(--noir);color:#fff;padding:3.5rem 2rem 1.5rem;}
 
 <section id="apropos" class="about">
   <div class="wrap">
-    <h2 class="r">La Marque AMG</h2>
+    <h2 class="r">SwissCosmetic - AMG</h2>
     <p class="sub r">Premium suisse depuis 2018</p>
+
+	<div class="brands-grid r">
+	<div class="brand-item">
+		<img src="images/logo_c10_.jpg" alt="C10 Collagen" loading="lazy">
+	</div>
+
+	<!-- <div class="brand-item">
+		<img src="images/Flyers_2_versions_c10_times_sublim_.jpeg" alt="Times Sublime" loading="lazy">
+	</div> -->
+
+	<div class="brand-item">
+		<img src="images/logo_amg.jpeg" alt="AMG Swiss Cosmetics" loading="lazy">
+	</div>
+	</div>
+
     <div class="about-text r">
-      <p>AMG est une gamme premium creee en 2018, avec une conception tres technique et professionnelle. Developpee en collaboration avec les meilleurs laboratoires suisses, chaque formule contient des principes actifs d'origine naturelle.</p>
-      <div class="quote">"Ce qui rend AMG vraiment unique, c'est sa qualite et surtout sa tolerance : meme une personne allergique a presque tout peut la supporter."</div>
-      <p>AMG propose des produits qu'on ne trouve pas ailleurs, ni en grande surface. Des produits techniques, dedies aux professionnels, testes dermatologiquement.</p>
-      <p>La biodisponibilite est au coeur de notre approche : la capacite de votre corps a absorber efficacement les principes actifs pour une efficacite maximale.</p>
+      <p>AMG est une gamme premium créée en 2018, avec une conception très technique et professionnelle. Développée en collaboration avec les meilleurs laboratoires suisses, chaque formule contient des principes actifs d'origine naturelle.</p>
+      <div class="quote">"Ce qui rend AMG vraiment unique, c'est sa qualité et surtout sa tolérance : même une personne allergique à presque tout peut la supporter."</div>
+      <p>AMG propose des produits qu'on ne trouve pas ailleurs, ni en grande surface. Des produits techniques, dédiés aux professionnels, testés dermatologiquement.</p>
+      <p>La biodisponibilité est au coeur de notre approche : la capacité de votre corps à absorber efficacement les principes actifs pour une efficacité maximale.</p>
     </div>
   </div>
 </section>
@@ -244,6 +300,44 @@ footer{background:var(--noir);color:#fff;padding:3.5rem 2rem 1.5rem;}
   <div class="wrap">
     <h2 class="r">Nos Collections</h2>
     <p class="sub r">Des soins techniques pour chaque type de peau</p>
+
+    <h3 class="cat-title">Nos Collagènes Premium</h3>
+    <p class="sub r">Cure de 3 mois minimum pour des résultats optimaux</p>
+    <div class="col-grid">
+      <div class="col-card r">
+  <div class="card-img">
+    <img src="images/Collagene_c10.jpeg" alt="C10 Collagen Drink" loading="lazy">
+  </div>
+  <h3 class="col-name">C10 Collagen Drink</h3>
+  <p class="col-desc">
+    Formule complète pour la récupération musculaire. Idéal pour les sportifs et douleurs chroniques.
+    Enrichi en vitamines C, D et E.
+  </p>
+  <div class="col-price">CHF 85.00</div>
+  <div class="col-pack">Pack de 30 unités</div>
+  <button class="add-btn" data-name="C10 Collagen Drink" data-price="85">
+    Ajouter au Panier
+  </button>
+</div>
+
+
+<div class="col-card r">
+  <div class="card-img">
+    <img src="images/Flyers_2_versions_c10_times_sublim_.jpeg" alt="Time Sublime Beaute" loading="lazy">
+  </div>
+  <h3 class="col-name">Time Sublime Beauté</h3>
+  <p class="col-desc">
+    Focus surhydratation : peau, cheveux et ongles.
+    Enrichi en vitamines A, C, E et biotine.
+    Booster beauté globale.
+  </p>
+  <div class="col-price">CHF 110.00</div>
+  <div class="col-pack">Pack de 28 unités</div>
+  <button class="add-btn" data-name="Time Sublime Beaute" data-price="110">
+    Ajouter au Panier
+  </button>
+</div>
+    </div>
 
     <h3 class="cat-title">Les Basics</h3>
     <div class="grid">
@@ -286,63 +380,21 @@ footer{background:var(--noir);color:#fff;padding:3.5rem 2rem 1.5rem;}
   </div>
 </section>
 
-<section class="collagenes">
-  <div class="wrap">
-    <h2 class="r">Nos Collagenes Premium</h2>
-    <p class="sub r">Cure de 3 mois minimum pour des resultats optimaux</p>
-    <div class="col-grid">
-      <div class="col-card r">
-  <div class="card-img">
-    <img src="images/Collagene_c10.jpeg" alt="C10 Collagen Drink" loading="lazy">
-  </div>
-  <h3 class="col-name">C10 Collagen Drink</h3>
-  <p class="col-desc">
-    Formule complete pour la recuperation musculaire. Ideal pour les sportifs et douleurs chroniques.
-    Enrichi en vitamines C, D et E.
-  </p>
-  <div class="col-price">CHF 85.00</div>
-  <div class="col-pack">Pack de 30 unites</div>
-  <button class="add-btn" data-name="C10 Collagen Drink" data-price="85">
-    Ajouter au Panier
-  </button>
-</div>
-
-
-<div class="col-card r">
-  <div class="card-img">
-    <img src="images/Flyers_2_versions_c10_times_sublim_.jpeg" alt="Time Sublime Beaute" loading="lazy">
-  </div>
-  <h3 class="col-name">Time Sublime Beaute</h3>
-  <p class="col-desc">
-    Focus surhydratation : peau, cheveux et ongles.
-    Enrichi en vitamines A, C, E et biotine.
-    Booster beaute globale.
-  </p>
-  <div class="col-price">CHF 110.00</div>
-  <div class="col-pack">Pack de 28 unites</div>
-  <button class="add-btn" data-name="Time Sublime Beaute" data-price="110">
-    Ajouter au Panier
-  </button>
-</div>
-    </div>
-  </div>
-</section>
-
 <section id="contact" class="contact">
   <div class="wrap">
     <h2 class="r">Nous Contacter</h2>
     <p class="sub r">Questions ou demandes de commande</p>
     <form class="contact-form r" id="cForm">
       <div class="fg-row">
-        <div class="fg"><label>Nom *</label><input type="text" required></div>
-        <div class="fg"><label>Prenom *</label><input type="text" required></div>
+        <div class="fg"><label>Nom</label><input type="text" required></div>
+        <div class="fg"><label>Prénom</label><input type="text" required></div>
       </div>
-      <div class="fg"><label>Adresse *</label><input type="text" required></div>
+      <div class="fg"><label>Adresse</label><input type="text" required></div>
       <div class="fg-row">
-        <div class="fg"><label>Code Postal *</label><input type="text" required></div>
-        <div class="fg"><label>Telephone *</label><input type="tel" required></div>
+        <div class="fg"><label>Code Postal</label><input type="text" required></div>
+        <div class="fg"><label>Téléphone</label><input type="tel" required></div>
       </div>
-      <div class="fg"><label>Email *</label><input type="email" required></div>
+      <div class="fg"><label>Email</label><input type="email" required></div>
       <div class="fg"><label>Message</label><textarea></textarea></div>
       <button type="submit" class="submit-btn">Envoyer</button>
     </form>
@@ -376,27 +428,27 @@ footer{background:var(--noir);color:#fff;padding:3.5rem 2rem 1.5rem;}
     <div class="order-steps">
       <div class="order-step"><b>1</b>Copiez le message</div>
       <div class="order-step"><b>2</b>Payez via Revolut</div>
-      <div class="order-step"><b>3</b>Collez le message en reference du paiement</div>
+      <div class="order-step"><b>3</b>Collez le message en référence du paiement</div>
     </div>
     <pre class="order-pre" id="orderMsg"></pre>
-    <p class="order-total-line">Montant a envoyer : <strong id="orderTotalAmt"></strong></p>
+    <p class="order-total-line">Montant à envoyer: <strong id="orderTotalAmt"></strong></p>
     <div class="order-btns">
       <button class="btn-copy" id="copyBtn">Copier le message</button>
       <button class="btn-rev" id="revBtn">Payer via Revolut</button>
     </div>
-    <p class="order-footnote">Confirmation envoyee apres verification du paiement.</p>
+    <p class="order-footnote">Confirmation envoyée après vérification du paiement.</p>
   </div>
 </div>
 
 <footer>
   <div class="foot-grid">
     <div class="foot-col">
-      <h4>AMG Swiss Cosmetics</h4>
-      <p>Gamme premium de cosmetiques hautes performances developpee en Suisse.</p>
+      <h4>SwissCosmetic</h4>
+      <p>Gamme premium de cosmétiques hautes performances développée en Suisse</p>
     </div>
     <div class="foot-col">
       <h4>Contact</h4>
-      <p>Avenue des Communes Reunies 76<br>1217 Grand Lancy, Suisse</p>
+      <p>Avenue des Communes Réunies 76<br>1217 Grand Lancy, Suisse</p>
       <a href="tel:+41791071106">+41 79 107 11 06</a>
       <a href="https://www.gardeninstitut.ch" target="_blank">gardeninstitut.ch</a>
     </div>
@@ -406,10 +458,10 @@ footer{background:var(--noir);color:#fff;padding:3.5rem 2rem 1.5rem;}
     </div>
     <div class="foot-col">
       <h4>Livraison</h4>
-      <p>CHF 10.50 par commande<br>Offerte a partir de CHF 350.00</p>
+      <p>CHF 10.50 par commande<br>Offerte à partir de CHF 350.00</p>
     </div>
   </div>
-  <div class="foot-bottom">&copy; 2026 AMG Swiss Cosmetics &mdash; Garden Institut</div>
+  <div class="foot-bottom">© 2026 SwissCosmetic - Garden Institut</div>
 </footer>
 
 <script>
@@ -475,7 +527,7 @@ document.getElementById('cartOverlay').addEventListener('click', function(e) { i
 document.getElementById('checkoutBtn').addEventListener('click', function() {
   if (cart.length === 0) { alert('Votre panier est vide'); return; }
   var sub = getSub(), ship = getShip(sub), total = (sub + ship).toFixed(2);
-  var lines = ['Commande AMG Swiss Cosmetics', ''];
+  var lines = ['Commande SwissCosmetic', ''];
   for (var i = 0; i < cart.length; i++) lines.push(cart[i].qty + 'x ' + cart[i].name + ' = CHF ' + (cart[i].price * cart[i].qty).toFixed(2));
   if (ship > 0) lines.push('Frais de port = CHF ' + ship.toFixed(2));
   lines.push(''); lines.push('TOTAL : CHF ' + total);
@@ -491,10 +543,10 @@ document.getElementById('orderModal').addEventListener('click', function(e) { if
 document.getElementById('copyBtn').addEventListener('click', function() {
   var msg = document.getElementById('orderMsg').textContent, btn = this;
   if (navigator.clipboard) {
-    navigator.clipboard.writeText(msg).then(function() { btn.textContent = 'Copie !'; setTimeout(function() { btn.textContent = 'Copier le message'; }, 2000); });
+    navigator.clipboard.writeText(msg).then(function() { btn.textContent = 'Copié !'; setTimeout(function() { btn.textContent = 'Copier le message'; }, 2000); });
   } else {
     var ta = document.createElement('textarea'); ta.value = msg; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-    btn.textContent = 'Copie !'; setTimeout(function() { btn.textContent = 'Copier le message'; }, 2000);
+    btn.textContent = 'Copié !'; setTimeout(function() { btn.textContent = 'Copier le message'; }, 2000);
   }
 });
 
