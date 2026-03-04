@@ -374,7 +374,9 @@ footer{background:var(--noir);color:#fff;padding:3.5rem 2rem 1.5rem;}
 
     <h3 class="cat-title">Pour Les Hommes</h3>
     <div class="grid">
-      <div class="card r"><div class="card-img"><img src="images/Serum_men_.jpeg" alt="Pack Men" loading="lazy"></div><div class="card-body"><div class="card-cat">Pour Les Hommes</div><div class="card-name">Pack Men Complet</div><div class="card-size">Sérum 30 ml + Crème 24H 30 ml</div><div class="card-foot"><span class="card-price">CHF 190.00</span><button class="add-btn" data-name="Pack Men Complet (Sérum + Crème)" data-price="190">Ajouter</button></div></div></div>
+      <div class="card r"><div class="card-img"><img src="images/Serum_men_.jpeg" alt="Serum Men" loading="lazy"></div><div class="card-body"><div class="card-cat">Pour Les Hommes</div><div class="card-name">Sérum Men</div><div class="card-size">30 ml</div><div class="card-foot"><span class="card-price">CHF 110.00</span><button class="add-btn" data-name="Sérum Men" data-price="110">Ajouter</button></div></div></div>
+      <div class="card r"><div class="card-img"><img src="images/soin_men_.jpeg" alt="Crème Men 24H" loading="lazy"></div><div class="card-body"><div class="card-cat">Pour Les Hommes</div><div class="card-name">Crème Men 24H</div><div class="card-size">30 ml</div><div class="card-foot"><span class="card-price">CHF 95.00</span><button class="add-btn" data-name="Crème Men 24H" data-price="95">Ajouter</button></div></div></div>
+      <div class="card r"><div class="card-img"><img src="images/Serum_men_.jpeg" alt="Pack Men Complet" loading="lazy"></div><div class="card-body"><div class="card-cat">Pour Les Hommes</div><div class="card-name">Pack Men Complet</div><div class="card-size">Sérum 30 ml + Crème 24H 30 ml</div><div class="card-foot"><span class="card-price">CHF 190.00</span><button class="add-btn" data-name="Pack Men Complet (Sérum + Crème)" data-price="190">Ajouter</button></div></div></div>
     </div>
   </div>
 </section>
@@ -411,6 +413,12 @@ footer{background:var(--noir);color:#fff;padding:3.5rem 2rem 1.5rem;}
       <div class="cart-empty-msg">Votre panier est vide</div>
     </div>
     <div class="cart-foot">
+      <div style="margin-bottom:1rem;">
+        <input type="text" id="promoCode" placeholder="Code promo" style="width:100%;padding:.7rem;border:1px solid #e0e0e0;font-size:.85rem;margin-bottom:.5rem;">
+        <button id="applyPromo" style="width:100%;padding:.7rem;background:var(--gris);border:none;cursor:pointer;font-weight:600;text-transform:uppercase;font-size:.75rem;transition:background .3s;">Appliquer</button>
+        <div id="promoMsg" style="font-size:.8rem;margin-top:.5rem;text-align:center;"></div>
+      </div>
+      <div id="discountRow" style="display:none;justify-content:space-between;font-size:.9rem;margin-bottom:.5rem;color:var(--dore);"><span>Réduction</span><span id="discountAmt">CHF 0.00</span></div>
       <div class="cart-total-row"><span>Total</span><span id="cartTotal">CHF 0.00</span></div>
       <div class="cart-ship" id="cartShip">Frais de port: CHF 10.50</div>
       <button class="checkout-btn" id="checkoutBtn">Commander</button>
@@ -425,15 +433,25 @@ footer{background:var(--noir);color:#fff;padding:3.5rem 2rem 1.5rem;}
     <button class="order-close" id="orderClose">&times;</button>
     <h3>Votre commande</h3>
     <div class="order-steps">
-      <div class="order-step"><b>1</b>Copiez le message</div>
-      <div class="order-step"><b>2</b>Payez via Revolut</div>
+      <div class="order-step"><b>1</b>Copiez le message de commande</div>
+      <div class="order-step"><b>2</b>Faites un virement bancaire</div>
       <div class="order-step"><b>3</b>Collez le message en référence du paiement</div>
     </div>
     <pre class="order-pre" id="orderMsg"></pre>
     <p class="order-total-line">Montant à envoyer: <strong id="orderTotalAmt"></strong></p>
+
+    <div style="background:#f5f5f5;padding:1rem;margin:1rem 0;font-size:.75rem;line-height:1.6;border-left:3px solid var(--dore);">
+      <strong>Informations bancaires:</strong><br>
+      Bénéficiaire: Revolut Bank UAB<br>
+      IBAN: CH64 0900 0IR8 1638 5905 0<br>
+      Référence: Charlotte Fougeront, CH<br><br>
+      <strong>Banque:</strong><br>
+      PostFinance AG<br>
+      Mingerstrasse 20, 3030 Bern, Switzerland
+    </div>
+
     <div class="order-btns">
       <button class="btn-copy" id="copyBtn">Copier le message</button>
-      <button class="btn-rev" id="revBtn">Payer via Revolut</button>
     </div>
     <p class="order-footnote">Confirmation envoyée après vérification du paiement.</p>
   </div>
@@ -465,6 +483,16 @@ footer{background:var(--noir);color:#fff;padding:3.5rem 2rem 1.5rem;}
 
 <script>
 var cart = [];
+var discount = 0;
+
+// Codes promo - Modifier ici pour ajouter/supprimer des codes
+var promoCodes = {
+  "BIENVENUE10": 10,
+  "PROMO20": 20,
+  "VIP50": 50,
+  "FIDELITE15": 15,
+  "HIVER25": 25
+};
 
 function getSub() {
   var s = 0;
@@ -475,10 +503,19 @@ function getShip(s) { return s >= 350 ? 0 : 10.50; }
 
 function renderCart() {
   var sub = getSub(), ship = getShip(sub), count = 0;
+  var total = sub - discount + ship;
   for (var i = 0; i < cart.length; i++) count += cart[i].qty;
   document.getElementById('cartBadge').textContent = count;
-  document.getElementById('cartTotal').textContent = 'CHF ' + (sub + ship).toFixed(2);
+  document.getElementById('cartTotal').textContent = 'CHF ' + total.toFixed(2);
   document.getElementById('cartShip').textContent = ship === 0 ? 'Livraison offerte !' : 'Frais de port: CHF 10.50';
+
+  if (discount > 0) {
+    document.getElementById('discountRow').style.display = 'flex';
+    document.getElementById('discountAmt').textContent = '-CHF ' + discount.toFixed(2);
+  } else {
+    document.getElementById('discountRow').style.display = 'none';
+  }
+
   var body = document.getElementById('cartBody');
   if (cart.length === 0) { body.innerHTML = '<div class="cart-empty-msg">Votre panier est vide</div>'; return; }
   body.innerHTML = '';
@@ -498,6 +535,30 @@ function renderCart() {
     row.appendChild(info); row.appendChild(pr); body.appendChild(row);
   }
 }
+
+// Gestion du code promo
+document.getElementById('applyPromo').addEventListener('click', function() {
+  var code = document.getElementById('promoCode').value.toUpperCase().trim();
+  var msg = document.getElementById('promoMsg');
+
+  if (!code) {
+    msg.style.color = '#c89b8a';
+    msg.textContent = 'Veuillez entrer un code';
+    return;
+  }
+
+  if (promoCodes[code]) {
+    discount = promoCodes[code];
+    msg.style.color = 'green';
+    msg.textContent = 'Code appliqué ! -CHF ' + discount;
+    renderCart();
+  } else {
+    msg.style.color = '#c89b8a';
+    msg.textContent = 'Code invalide';
+    discount = 0;
+    renderCart();
+  }
+});
 
 document.addEventListener('click', function(e) {
   var t = e.target;
@@ -525,9 +586,10 @@ document.getElementById('cartOverlay').addEventListener('click', function(e) { i
 
 document.getElementById('checkoutBtn').addEventListener('click', function() {
   if (cart.length === 0) { alert('Votre panier est vide'); return; }
-  var sub = getSub(), ship = getShip(sub), total = (sub + ship).toFixed(2);
+  var sub = getSub(), ship = getShip(sub), total = (sub - discount + ship).toFixed(2);
   var lines = ['Commande SwissCosmetic', ''];
   for (var i = 0; i < cart.length; i++) lines.push(cart[i].qty + 'x ' + cart[i].name + ' = CHF ' + (cart[i].price * cart[i].qty).toFixed(2));
+  if (discount > 0) lines.push('Réduction = -CHF ' + discount.toFixed(2));
   if (ship > 0) lines.push('Frais de port = CHF ' + ship.toFixed(2));
   lines.push(''); lines.push('TOTAL : CHF ' + total);
   document.getElementById('orderMsg').textContent = lines.join('\n');
@@ -548,8 +610,6 @@ document.getElementById('copyBtn').addEventListener('click', function() {
     btn.textContent = 'Copié !'; setTimeout(function() { btn.textContent = 'Copier le message'; }, 2000);
   }
 });
-
-document.getElementById('revBtn').addEventListener('click', function() { window.open('https://revolut.me/chawa11/pocket/SIVZES/ZrR', '_blank'); });
 
 document.getElementById('hbg').addEventListener('click', function() { this.classList.toggle('open'); document.getElementById('navLinks').classList.toggle('open'); });
 document.querySelectorAll('.nav-links a').forEach(function(a) { a.addEventListener('click', function() { document.getElementById('hbg').classList.remove('open'); document.getElementById('navLinks').classList.remove('open'); }); });
